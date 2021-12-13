@@ -1,0 +1,158 @@
+
+* {
+	background-color: #f5debe;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	  
+}
+
+
+html {
+	scroll-behavior: smooth;
+}
+a{
+    background-color: transparent;
+
+}
+a:hover {
+	color: #AD82F8;
+}
+
+a:visited {
+	color: black;
+}
+
+::-webkit-scrollbar {
+	display: none;
+}
+
+
+/*h1*/
+
+h1 {
+	font-family: 'Times New Roman', Times, serif;
+	font-size: 200%;
+	background-color: transparent;
+	height: auto;
+    padding: 2%;
+    margin-left: 30%;
+
+}
+
+
+.forma-title {
+	padding-top: 1%;
+	width: 20%;
+	height: auto;
+	margin:auto;
+	display: block;
+	background-color: transparent;
+	position: relative;
+	overflow: hidden;
+	margin-top: 0px;
+}
+
+.main-container{
+padding-left: 20%;
+padding-right: 20%;
+
+
+}
+
+h2{
+text-align: center;
+font-size: 180%;
+
+}
+
+.li-metrics{
+    font-size: 150%;
+    width: calc(25% - 1rem);
+}
+.ul-metrics{
+list-style-type: none;
+padding-top: 40px;
+
+}
+.number-total-metrics{
+    font-size: 250%;
+}
+
+h3{
+    padding-top: 20px;
+    padding-bottom: 40px;
+    text-align: center;
+    font-size: 200%;
+}
+
+.legend-input{
+
+font-size: 20px;
+
+}
+
+.wallet-input{
+    margin: 0.5rem;
+    border-radius: 20px;
+    padding: 8px;
+    justify-content: center;
+    border: 1px black solid;
+    width: 100%;
+    background-color: white;
+    height: 50px;
+}
+
+.submit-input{
+width: 20%;
+height: 30px;
+margin-bottom: 50px;
+font-size: 120%;
+border: 2px black solid;
+background-color: white;
+margin-left: 0.5rem;
+border-radius: 5px;
+}
+
+.ticket-img{
+width: 25px;
+
+}
+
+.transaction-false{
+display: none;
+margin-bottom: 30px;
+font-size: 130%;
+}
+.transaction-false-title{
+font-size: 30px;
+
+}
+.transaction-true{
+	display: none;
+}
+.img-container {
+	display: inline-flex;
+	color: aqua;
+}
+
+.img-red {
+	width: 45px;
+	width: 45px;
+	margin: 10px;
+	background-color: transparent;
+}
+
+.img-red-container {
+	background-color: #a01208;
+}
+
+.footer {
+	background-color: #a01208;
+	padding-bottom: 0;
+	margin-bottom: 0;
+}
+.list-footer-li{
+
+	text-decoration: none;
+}

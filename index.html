@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+   <html lang="es">
+      <head>
+   <title>
+      Crypto Restaurants
+   </title>
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="../CSS/rastreo.css">
+      <link rel="shortcut icon" href="../IMG/favicon.ico" type="image / x-icon" > 
+      <link rel="icon" href="../IMG/favicon.ico" type="image / x-icon" >
+      <meta name="viewport" content="width=device-width, initial-scale=1"/>
+</head>
+
+
+<body>
+<script src="../JS/js.js"></script>
+
+
+<!--INICIO-->
+
+
+<A name="home">
+   <div class="title-container">   
+</A> 
+
+
+<a href="https://loljesusd1.github.io/Tinyrestaurant.github.io/"><img class="forma-title" src="../IMG/forma-title.png"></a>
+   <h1 class="Title">
+       Lista Actual de Tiny Restaurant
+   </h1>
+</div>
+<div class="main-container">
+<div class="h2-title-container"></div>
+<h2>Progreso actual del crowdfunding</h2>
+
+    <ul class="ul-metrics">
+      <li class="li-metrics">BUSD Recaudados</li>
+      <strong class="number-total-metrics">#</strong>
+
+      <li class="li-metrics">Numero de donantes</li>
+      <strong class="number-total-metrics">#</strong>
+
+      <li class="li-metrics">Slots Vacios</li>
+      <strong class="number-total-metrics">#</strong>
+
+    </ul>
+
+<h3>Compruebe su estado actual</h3>
+<legend class="legend-input">Introduzca su billetera de Metamask:</legend>
+
+<input type="text" id="area" class="wallet-input" placeholder="Ingrese su wallet">
+
+<input type="submit" class="submit-input"  onclick="mostrarresultado();">
+<script >
+function mostrarresultado() {
+document.getElementById("transaction-false").style.display="block";
+
+}
+
+</script>
+<p id="transaction-false" class="transaction-false">
+<b class="transaction-false-title">No registrado.</b>
+<br>
+Al parecer la wallet que ingresaste no resgitra ninguna transaccion hacia nosotros, lo lamentamos mucho.
+<br>
+Verifica que la transferencia de BUSD se haya hecho de una manera correcta y vuelve a intentar comprobar tu estado.
+<br>
+De ser correcta la tranferencia cree un ticket en el canal <b>Ticket</b> <img class="ticket-img" src="/IMG/ticket.png" > de nuestro discord y comprobaremos que ha sucedido.
+
+
+</p>
+
+<p id="transaction-true" class="transaction-true">
+   Estado: Exitoso.
+   <br>
+   Tu transaccion numero # de # BUSD ha sido realizada de manera exitosa
+   
+   </p>
+
+</div>
+<footer class="footer">
+   
+    <div class="img-container">
+       <div class="img-red-container"> 
+          <a href="https://discord.gg/hac2bYzM" target="_blank" >
+          <img class="img-red" src="../IMG/discord.png">
+       </div>
+    </a>
+    
+    
+    <div class="img-container">
+       <div class="img-red-container"> 
+          <a href="twitter.com" target="_blank">
+          <img class="img-red" src="../IMG/gorjeo.png">
+       </div>
+    </a>
+    
+    
+    <div class="img-container">
+       <div class="img-red-container"> 
+          <a href="telegram.com" target="_blank">
+          <img class="img-red" src="../IMG/telegram.png">
+       </div>
+    </a>
+    
+    
+    <div class="img-container">
+       <div class="img-red-container"> 
+          <a href="https://www.youtube.com/watch?v=_kVTRh1vknA" target="_blank">
+          <img class="img-red" src="../IMG/youtube.png">
+       </div>
+    </a>
+</body>
+</html>
