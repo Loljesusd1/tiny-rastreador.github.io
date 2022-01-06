@@ -17,11 +17,24 @@
    <link rel="shortcut icon" href="IMG/favicon.ico" type="image / x-icon" >
    <link rel="icon" href="IMG/favicon.ico" type="image / x-icon" >
    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+   <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
 </head>
 
 
 <body>
-<script src="JS/js.js"></script>
+   <script>
+         var userAccount;
+         window.addEventListener("load", function() {
+            if (typeof web3 !== 'undefined') {
+               web3 = new Web3(web3.currentProvider);
+               userAccount = web3.eth.accounts[0];
+               alert("Metamask IS installed")
+            } else {
+               var test = typeof web3;
+               alert("Metamask is not installed " + test);
+            }
+         });
+   </script>
 
 
 <!--INICIO-->
