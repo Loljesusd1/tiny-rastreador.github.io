@@ -23,17 +23,23 @@
 
 <body>
    <script>
-         var userAccount;
-         window.addEventListener("load", function() {
-            if (typeof web3 !== 'undefined') {
-               web3 = new Web3(web3.currentProvider);
-               userAccount = web3.eth.accounts[0];
-               alert("Metamask IS installed")
-            } else {
-               var test = typeof web3;
-               alert("Metamask is not installed " + test);
-            }
-         });
+      var userAccount;
+      window.addEventListener("load", function() {
+         if (typeof web3 !== 'undefined') {
+            web3 = new Web3(web3.currentProvider);
+            userAccount = web3.eth.accounts[0];
+            alert("Metamask IS installed, account is: " + userAccount.address);
+         } else {
+            var test = typeof web3;
+            alert("Metamask is not installed " + test);
+         }
+      });
+      
+      var accountInterval = setInterval(function() {
+         if (web3.eth.accounts[0] !== userAccount) {
+            alert("Account changed");
+         }
+      }, 100);
    </script>
 
 
