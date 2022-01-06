@@ -1,10 +1,19 @@
+a{
+	text-decoration: none;
+	width: fit-content;
+}
 
+
+@media only screen and (min-width: 981px) {
 * {
-	background-color: #f5debe;
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
 	  
+}
+body{
+	
+	background-color: #f5debe;
 }
 
 
@@ -26,34 +35,35 @@ a:visited {
 ::-webkit-scrollbar {
 	display: none;
 }
+#fondo{
+	background-image: url(../IMG/caratula.png);
+	background-size: 100%;
+	background-repeat: no-repeat;
 
+}
 
 /*h1*/
 
 h1 {
 	font-family: 'Times New Roman', Times, serif;
 	font-size: 200%;
-	background-color: transparent;
-	height: auto;
-    padding: 2%;
-    margin-left: 30%;
+	text-align: center;
 
 }
 
 
 .forma-title {
-	padding-top: 1%;
+	padding-top: 50px;
+	padding-bottom: 20px;
 	width: 20%;
 	height: auto;
 	margin:auto;
 	display: block;
-	background-color: transparent;
-	position: relative;
-	overflow: hidden;
-	margin-top: 0px;
+	
 }
 
 .main-container{
+	
 padding-left: 20%;
 padding-right: 20%;
 
@@ -63,6 +73,8 @@ padding-right: 20%;
 h2{
 text-align: center;
 font-size: 180%;
+padding-top: 20px;
+padding-bottom: 10px;
 
 }
 
@@ -88,7 +100,7 @@ h3{
 
 .legend-input{
 
-font-size: 20px;
+font-size: 22px;
 
 }
 
@@ -97,10 +109,13 @@ font-size: 20px;
     border-radius: 20px;
     padding: 8px;
     justify-content: center;
-    border: 1px black solid;
+    border: 2px black solid;
     width: 100%;
     background-color: white;
     height: 50px;
+}
+.wallet-input:hover{
+	border:2px #a01208 solid;
 }
 
 .submit-input{
@@ -111,7 +126,10 @@ font-size: 120%;
 border: 2px black solid;
 background-color: white;
 margin-left: 0.5rem;
-border-radius: 5px;
+border-radius: 10px;
+}
+.submit-input:hover{
+border:2px #34d14e solid;	
 }
 
 .ticket-img{
@@ -123,6 +141,7 @@ width: 25px;
 display: none;
 margin-bottom: 30px;
 font-size: 130%;
+text-align: justify;
 }
 .transaction-false-title{
 font-size: 30px;
@@ -155,4 +174,701 @@ font-size: 30px;
 .list-footer-li{
 
 	text-decoration: none;
+}
+}
+
+
+@media only screen and (max-width: 980px) and (min-width: 821px) {
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	  
+}
+body{
+	
+	background-color: #f5debe;
+}
+
+
+html {
+	scroll-behavior: smooth;
+}
+a{
+    background-color: transparent;
+
+}
+a:hover {
+	color: #AD82F8;
+}
+
+a:visited {
+	color: black;
+}
+
+::-webkit-scrollbar {
+	display: none;
+}
+#fondo{
+	background-image: url(../IMG/Caratula2.png);
+	background-size: 100%;
+	background-repeat: no-repeat;
+
+}
+
+/*h1*/
+
+h1 {
+	font-family: 'Times New Roman', Times, serif;
+	font-size: 200%;
+	text-align: center;
+
+}
+
+
+.forma-title {
+	padding-top: 50px;
+	padding-bottom: 20px;
+	width: 25%;
+	height: auto;
+	margin:auto;
+	display: block;
+	
+}
+
+.main-container{
+	
+padding-left: 20%;
+padding-right: 20%;
+
+
+}
+
+h2{
+text-align: center;
+font-size: 180%;
+padding-top: 20px;
+padding-bottom: 10px;
+
+}
+
+.li-metrics{
+    font-size: 150%;
+    width: calc(25% - 1rem);
+}
+.ul-metrics{
+list-style-type: none;
+padding-top: 40px;
+
+}
+.number-total-metrics{
+    font-size: 250%;
+}
+
+h3{
+    padding-top: 20px;
+    padding-bottom: 40px;
+    text-align: center;
+    font-size: 200%;
+}
+
+.legend-input{
+
+font-size: 22px;
+
+}
+
+.wallet-input{
+    margin: 0.5rem;
+    border-radius: 20px;
+    padding: 8px;
+    justify-content: center;
+    border: 2px black solid;
+    width: 100%;
+    background-color: white;
+    height: 50px;
+}
+.wallet-input:hover{
+	border:2px #a01208 solid;
+}
+
+.submit-input{
+width: 20%;
+height: 30px;
+margin-bottom: 50px;
+font-size: 120%;
+border: 2px black solid;
+background-color: white;
+margin-left: 0.5rem;
+border-radius: 10px;
+}
+.submit-input:hover{
+border:2px #34d14e solid;	
+}
+
+.ticket-img{
+width: 25px;
+
+}
+
+.transaction-false{
+display: none;
+margin-bottom: 30px;
+font-size: 130%;
+text-align: justify;
+}
+.transaction-false-title{
+font-size: 30px;
+
+}
+.transaction-true{
+	display: none;
+}
+.img-container {
+	display: inline-flex;
+	color: aqua;
+}
+
+.img-red {
+	width: 45px;
+	width: 45px;
+	margin: 10px;
+	background-color: transparent;
+}
+
+.img-red-container {
+	background-color: #a01208;
+}
+
+.footer {
+	background-color: #a01208;
+	padding-bottom: 0;
+	margin-bottom: 0;
+}
+.list-footer-li{
+
+	text-decoration: none;
+}
+}
+
+@media only screen and (max-width: 820px) and (min-width: 621px) {
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	  
+}
+body{
+	
+	background-color: #f5debe;
+}
+
+
+html {
+	scroll-behavior: smooth;
+}
+a{
+    background-color: transparent;
+
+}
+a:hover {
+	color: #AD82F8;
+}
+
+a:visited {
+	color: black;
+}
+
+::-webkit-scrollbar {
+	display: none;
+}
+#fondo{
+	background-image: url(../IMG/caratula3.png);
+	background-size: 100%;
+	background-repeat: no-repeat;
+
+}
+
+/*h1*/
+
+h1 {
+	font-family: 'Times New Roman', Times, serif;
+	font-size: 190%;
+	text-align: center;
+
+}
+
+
+.forma-title {
+	padding-top: 50px;
+	padding-bottom: 20px;
+	width: 30%;
+	height: auto;
+	margin:auto;
+	display: block;
+	
+}
+
+.main-container{
+	
+padding-left: 15%;
+padding-right: 15%;
+
+
+}
+
+h2{
+text-align: center;
+font-size: 180%;
+padding-top: 20px;
+padding-bottom: 10px;
+
+}
+
+.li-metrics{
+    font-size: 150%;
+    width: calc(25% - 1rem);
+}
+.ul-metrics{
+list-style-type: none;
+padding-top: 40px;
+
+}
+.number-total-metrics{
+    font-size: 250%;
+}
+
+h3{
+    padding-top: 20px;
+    padding-bottom: 40px;
+    text-align: center;
+    font-size: 200%;
+}
+
+.legend-input{
+
+font-size: 22px;
+
+}
+
+.wallet-input{
+    margin: 0.5rem;
+    border-radius: 20px;
+    padding: 8px;
+    justify-content: center;
+    border: 2px black solid;
+    width: 100%;
+    background-color: white;
+    height: 50px;
+}
+.wallet-input:hover{
+	border:2px #a01208 solid;
+}
+
+.submit-input{
+width: 20%;
+height: 30px;
+margin-bottom: 50px;
+font-size: 120%;
+border: 2px black solid;
+background-color: white;
+margin-left: 0.5rem;
+border-radius: 10px;
+}
+.submit-input:hover{
+border:2px #34d14e solid;	
+}
+
+.ticket-img{
+width: 20px;
+
+}
+
+.transaction-false{
+display: none;
+margin-bottom: 30px;
+font-size: 110%;
+text-align: justify;
+}
+.transaction-false-title{
+font-size: 30px;
+
+}
+.transaction-true{
+	display: none;
+}
+.img-container {
+	display: inline-flex;
+	color: aqua;
+}
+
+.img-red {
+	width: 40px;
+	width: 40px;
+	margin: 10px;
+	background-color: transparent;
+}
+
+.img-red-container {
+	background-color: #a01208;
+}
+
+.footer {
+	background-color: #a01208;
+	padding-bottom: 0;
+	margin-bottom: 0;
+}
+.list-footer-li{
+
+	text-decoration: none;
+}
+}
+
+@media only screen and (max-width: 620px) and (min-width: 501px) {
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	  
+}
+body{
+	
+	background-color: #f5debe;
+}
+
+
+html {
+	scroll-behavior: smooth;
+}
+a{
+    background-color: transparent;
+
+}
+a:hover {
+	color: #AD82F8;
+}
+
+a:visited {
+	color: black;
+}
+
+::-webkit-scrollbar {
+	display: none;
+}
+#fondo{
+	background-image: url(../IMG/caratula3.png);
+	background-size: 100%;
+	background-repeat: no-repeat;
+
+}
+
+/*h1*/
+
+h1 {
+	font-family: 'Times New Roman', Times, serif;
+	font-size: 200%;
+	text-align: center;
+margin-left: 10%;
+margin-right: 10%;
+}
+
+
+.forma-title {
+	padding-top: 50px;
+	padding-bottom: 20px;
+	width: 30%;
+	height: auto;
+	margin:auto;
+	display: block;
+	
+}
+
+.main-container{
+	
+padding-left: 15%;
+padding-right: 15%;
+
+
+}
+
+h2{
+text-align: center;
+font-size: 180%;
+padding-top: 20px;
+padding-bottom: 10px;
+
+}
+
+.li-metrics{
+    font-size: 140%;
+    width: calc(25% - 1rem);
+}
+.ul-metrics{
+list-style-type: none;
+padding-top: 40px;
+
+}
+.number-total-metrics{
+    font-size: 200%;
+}
+
+h3{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: center;
+    font-size: 170%;
+}
+
+.legend-input{
+
+font-size: 22px;
+margin-left: 0.5rem;
+
+}
+
+.wallet-input{
+    margin: 0.5rem;
+    border-radius: 20px;
+    padding: 8px;
+    justify-content: center;
+    border: 2px black solid;
+    width: 100%;
+    background-color: white;
+    height: 50px;
+}
+.wallet-input:hover{
+	border:2px #a01208 solid;
+}
+
+.submit-input{
+width: 20%;
+height: 30px;
+margin-bottom: 50px;
+font-size: 120%;
+border: 2px black solid;
+background-color: white;
+margin-left: 0.5rem;
+border-radius: 10px;
+}
+.submit-input:hover{
+border:2px #34d14e solid;	
+}
+
+.ticket-img{
+width: 20px;
+
+}
+
+.transaction-false{
+display: none;
+margin-bottom: 30px;
+font-size: 120%;
+text-align: justify;
+}
+.transaction-false-title{
+font-size: 25px;
+
+}
+.transaction-true{
+	display: none;
+}
+.img-container {
+	display: inline-flex;
+	color: aqua;
+}
+
+.img-red {
+	width: 45px;
+	width: 45px;
+	margin: 10px;
+	background-color: transparent;
+}
+
+.img-red-container {
+	background-color: #a01208;
+}
+
+.footer {
+	background-color: #a01208;
+	padding-bottom: 0;
+	margin-bottom: 0;
+}
+.list-footer-li{
+
+	text-decoration: none;
+}
+}
+
+@media only screen and (max-width: 500px) and (min-width: 5px) {
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	  
+}
+body{
+	
+	background-color: #f5debe;
+}
+
+
+html {
+	scroll-behavior: smooth;
+}
+a{
+    background-color: transparent;
+
+}
+a:hover {
+	color: #AD82F8;
+}
+
+a:visited {
+	color: black;
+}
+
+::-webkit-scrollbar {
+	display: none;
+}
+#fondo{
+	background-image: url(../IMG/caratula3.png);
+	background-size: 100%;
+	background-repeat: no-repeat;
+
+}
+
+/*h1*/
+
+h1 {
+	font-family: 'Times New Roman', Times, serif;
+	font-size: 190%;
+	text-align: center;
+margin-left: 10%;
+margin-right: 10%;
+}
+
+
+.forma-title {
+	padding-top: 50px;
+	padding-bottom: 20px;
+	width: 30%;
+	height: auto;
+	margin:auto;
+	display: block;
+	
+}
+
+.main-container{
+	
+padding-left: 15%;
+padding-right: 15%;
+
+
+}
+
+h2{
+text-align: center;
+font-size: 160%;
+padding-top: 20px;
+padding-bottom: 10px;
+
+}
+
+.li-metrics{
+    font-size: 150%;
+    width: calc(25% - 1rem);
+}
+.ul-metrics{
+list-style-type: none;
+padding-top: 40px;
+
+}
+.number-total-metrics{
+    font-size: 250%;
+}
+
+h3{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: center;
+    font-size: 180%;
+}
+
+.legend-input{
+
+font-size: 19px;
+
+}
+
+.wallet-input{
+    margin: 0.5rem;
+    border-radius: 20px;
+    padding: 8px;
+    justify-content: center;
+    border: 2px black solid;
+    width: 100%;
+    background-color: white;
+    height: 50px;
+}
+.wallet-input:hover{
+	border:2px #a01208 solid;
+}
+
+.submit-input{
+width: 20%;
+height: 30px;
+margin-bottom: 30px;
+font-size: 120%;
+border: 2px black solid;
+background-color: white;
+margin-left: 0.5rem;
+border-radius: 10px;
+}
+.submit-input:hover{
+border:2px #34d14e solid;	
+}
+
+.ticket-img{
+width: 20px;
+
+}
+
+.transaction-false{
+display: none;
+margin-bottom: 30px;
+font-size: 115%;
+text-align: justify;
+}
+.transaction-false-title{
+font-size: 25px;
+
+}
+.transaction-true{
+	display: none;
+}
+.img-container {
+	display: inline-flex;
+	color: aqua;
+}
+
+.img-red {
+	width: 35px;
+	width: 35px;
+	margin: 10px;
+	background-color: transparent;
+}
+
+.img-red-container {
+	background-color: #a01208;
+}
+
+.footer {
+	background-color: #a01208;
+	padding-bottom: 0;
+	margin-bottom: 0;
+}
+.list-footer-li{
+
+	text-decoration: none;
+}
 }
