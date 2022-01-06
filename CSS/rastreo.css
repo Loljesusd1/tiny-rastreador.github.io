@@ -383,7 +383,7 @@ a:visited {
 	display: none;
 }
 #fondo{
-	background-image: url../(IMG/caratula3.png);
+	background-image: url(../IMG/caratula3.png);
 	background-size: 100%;
 	background-repeat: no-repeat;
 
@@ -731,7 +731,7 @@ a:visited {
 	display: none;
 }
 #fondo{
-	background-image: url../(IMG/caratula3.png);
+	background-image: url(../IMG/caratula3.png);
 	background-size: 100%;
 	background-repeat: no-repeat;
 
@@ -823,7 +823,7 @@ border: 2px black solid;
 background-color: white;
 margin-left: 0.5rem;
 border-radius: 10px;
-font-size:10px;
+font-size:18px;
 }
 .submit-input:hover{
 border:2px #34d14e solid;	
