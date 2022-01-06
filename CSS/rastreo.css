@@ -36,7 +36,7 @@ a:visited {
 	display: none;
 }
 #fondo{
-	background-image: url(../IMG/caratula.png);
+	background-image: url(IMG/caratula.png);
 	background-size: 100%;
 	background-repeat: no-repeat;
 
@@ -210,7 +210,7 @@ a:visited {
 	display: none;
 }
 #fondo{
-	background-image: url(../IMG/Caratula2.png);
+	background-image: url(IMG/Caratula2.png);
 	background-size: 100%;
 	background-repeat: no-repeat;
 
@@ -383,7 +383,7 @@ a:visited {
 	display: none;
 }
 #fondo{
-	background-image: url(../IMG/caratula3.png);
+	background-image: url(IMG/caratula3.png);
 	background-size: 100%;
 	background-repeat: no-repeat;
 
@@ -556,7 +556,7 @@ a:visited {
 	display: none;
 }
 #fondo{
-	background-image: url(../IMG/caratula3.png);
+	background-image: url(IMG/caratula3.png);
 	background-size: 100%;
 	background-repeat: no-repeat;
 
@@ -731,7 +731,7 @@ a:visited {
 	display: none;
 }
 #fondo{
-	background-image: url(../IMG/caratula3.png);
+	background-image: url(IMG/caratula3.png);
 	background-size: 100%;
 	background-repeat: no-repeat;
 
@@ -751,7 +751,7 @@ margin-right: 10%;
 .forma-title {
 	padding-top: 50px;
 	padding-bottom: 20px;
-	width: 30%;
+	width: 35%;
 	height: auto;
 	margin:auto;
 	display: block;
@@ -815,7 +815,7 @@ font-size: 19px;
 }
 
 .submit-input{
-width: 20%;
+width: fit-content;
 height: 30px;
 margin-bottom: 30px;
 font-size: 120%;
@@ -823,6 +823,7 @@ border: 2px black solid;
 background-color: white;
 margin-left: 0.5rem;
 border-radius: 10px;
+font-size:10px;
 }
 .submit-input:hover{
 border:2px #34d14e solid;	
