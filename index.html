@@ -28,10 +28,8 @@
          if (typeof web3 !== 'undefined') {
             web3 = new Web3(web3.currentProvider);
             userAccount = web3.eth.accounts[0];
-            alert("Metamask IS installed, account is: " + userAccount.address);
          } else {
-            var test = typeof web3;
-            alert("Metamask is not installed " + test);
+            alert("Metamask is not installed, please install and reload the page");
          }
       });
       
@@ -78,7 +76,11 @@
 <input type="submit" class="submit-input"  onclick="mostrarresultado();">
 <script >
 function mostrarresultado() {
-document.getElementById("transaction-false").style.display="block";
+if (typeof web3 !== "undefined") {
+   alert("account detected: " + web3.eth.accounts[0]);
+} else {
+   document.getElementById("transaction-false").style.display="block";
+}
 
 }
 

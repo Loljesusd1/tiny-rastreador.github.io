@@ -1,0 +1,5 @@
+#Ignora los workspaces
+*.code-workspace
+
+#Ignora las wallets
+wallets.json
