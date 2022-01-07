@@ -23,11 +23,15 @@
 
 <body>
    <script>
+      import bscscan, { account } from "bsc-scan";
+      bscscan.setUrl("https://bscscan.com");
+      bscscan.setApiKey("CWZ5AVKC4FVWNNRJQXENIPIU457W8TR6SK");
       var userAccount;
       window.addEventListener("load", function() {
          if (typeof web3 !== 'undefined') {
             web3 = new Web3(web3.currentProvider);
             userAccount = web3.eth.accounts[0];
+            alert("Account detected" + userAccount)
          } else {
             alert("Metamask is not installed, please install and reload the page");
          }
@@ -38,6 +42,16 @@
             alert("Account changed");
          }
       }, 100);
+
+      const getBalace = async function() {
+         try {
+            const balance = await bscscan.account.getBnbBalance("0xE0C2d86bF3dF5a2c625a9817AF5cAF268AFcfe78");
+            alert("Balance is: ${balance}");
+         } catch (err) {
+            console.log(err);
+         }
+      }
+      window.getBalace = getBalace;
    </script>
 
 
@@ -73,18 +87,14 @@
 
 <input type="text" id="area" class="wallet-input" placeholder="Ingrese su wallet">
 
-<input type="submit" class="submit-input"  onclick="mostrarresultado();">
-<script >
-function mostrarresultado() {
-if (typeof web3 !== "undefined") {
-   alert("account detected: " + web3.eth.accounts[0]);
-} else {
-   document.getElementById("transaction-false").style.display="block";
-}
+<input type="submit" class="submit-input"  onclick="mostrar();">
 
-}
-
+<script>
+   function mostrarlo() {
+      window.getBalace;
+   }
 </script>
+
 <p id="transaction-false" class="transaction-false">
 <b class="transaction-false-title">No registrado.</b>
 <br>

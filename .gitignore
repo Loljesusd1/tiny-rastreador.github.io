@@ -3,3 +3,6 @@
 
 #Ignora las wallets
 wallets.json
+
+#Ignora carpeta debug
+.vscode
