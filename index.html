@@ -18,40 +18,45 @@
    <link rel="icon" href="IMG/favicon.ico" type="image / x-icon" >
    <meta name="viewport" content="width=device-width, initial-scale=1"/>
    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 
 
 <body>
    <script>
-      import bscscan, { account } from "bsc-scan";
-      bscscan.setUrl("https://bscscan.com");
-      bscscan.setApiKey("CWZ5AVKC4FVWNNRJQXENIPIU457W8TR6SK");
       var userAccount;
+
+      function startApp() {
+         var accountInterval = setInterval(function() {
+            if (web3.eth.accounts[0] !== userAccount) {
+               alert("Account changed");
+            }
+         }, 100);
+      }
+
       window.addEventListener("load", function() {
          if (typeof web3 !== 'undefined') {
             web3 = new Web3(web3.currentProvider);
             userAccount = web3.eth.accounts[0];
-            alert("Account detected" + userAccount)
+            console.log("Account detected" + userAccount)
+            startApp();
          } else {
             alert("Metamask is not installed, please install and reload the page");
          }
       });
-      
-      var accountInterval = setInterval(function() {
-         if (web3.eth.accounts[0] !== userAccount) {
-            alert("Account changed");
-         }
-      }, 100);
 
-      const getBalace = async function() {
-         try {
-            const balance = await bscscan.account.getBnbBalance("0xE0C2d86bF3dF5a2c625a9817AF5cAF268AFcfe78");
-            alert("Balance is: ${balance}");
-         } catch (err) {
-            console.log(err);
+      const getBalance = async function() {
+         const params = {
+            module:"account",
+            action:"balance",
+            address:"0xCd7CF2f18c41CBc0783B5114a9fAA91aa9eF258c",
+            apikey:"CWZ5AVKC4FVWNNRJQXENIPIU457W8TR6SK"
          }
+         axios.get("https://api.bscscan.com/api", params)
+         .then(data=>console.log(data))
+         .catch(err=>console.log(err))
       }
-      window.getBalace = getBalace;
+      window.getBalance = getBalance;
    </script>
 
 
@@ -87,11 +92,13 @@
 
 <input type="text" id="area" class="wallet-input" placeholder="Ingrese su wallet">
 
-<input type="submit" class="submit-input"  onclick="mostrar();">
+<input type="submit" class="submit-input"  onclick="mostrarlo();">
 
 <script>
    function mostrarlo() {
-      window.getBalace;
+      console.log("Pressed");
+      window.getBalance;
+      console.log("Done")
    }
 </script>
 
