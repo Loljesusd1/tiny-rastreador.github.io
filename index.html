@@ -17,49 +17,13 @@
    <link rel="shortcut icon" href="IMG/favicon.ico" type="image / x-icon" >
    <link rel="icon" href="IMG/favicon.ico" type="image / x-icon" >
    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+   <script type="module", src="JS/app.js"></script>
    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 
 
 <body>
-   <script>
-      var userAccount;
-
-      function startApp() {
-         var accountInterval = setInterval(function() {
-            if (web3.eth.accounts[0] !== userAccount) {
-               alert("Account changed");
-            }
-         }, 100);
-      }
-
-      window.addEventListener("load", function() {
-         if (typeof web3 !== 'undefined') {
-            web3 = new Web3(web3.currentProvider);
-            userAccount = web3.eth.accounts[0];
-            console.log("Account detected" + userAccount)
-            startApp();
-         } else {
-            alert("Metamask is not installed, please install and reload the page");
-         }
-      });
-
-      const getBalance = async function() {
-         const params = {
-            module:"account",
-            action:"balance",
-            address:"0xCd7CF2f18c41CBc0783B5114a9fAA91aa9eF258c",
-            apikey:"CWZ5AVKC4FVWNNRJQXENIPIU457W8TR6SK"
-         }
-         axios.get("https://api.bscscan.com/api", params)
-         .then(data=>console.log(data))
-         .catch(err=>console.log(err))
-      }
-      window.getBalance = getBalance;
-   </script>
-
-
 <!--INICIO-->
 
 <div id="fondo">
@@ -92,15 +56,7 @@
 
 <input type="text" id="area" class="wallet-input" placeholder="Ingrese su wallet">
 
-<input type="submit" class="submit-input"  onclick="mostrarlo();">
-
-<script>
-   function mostrarlo() {
-      console.log("Pressed");
-      window.getBalance;
-      console.log("Done")
-   }
-</script>
+<input type="submit" class="submit-input">
 
 <p id="transaction-false" class="transaction-false">
 <b class="transaction-false-title">No registrado.</b>
