@@ -1,15 +1,7 @@
 const totalMetrics = document.getElementsByClassName("number-total-metrics");
 
-function startApp() {
-    var accountInterval = setInterval(function() {
-        if (web3.eth.accounts[0] !== userAccount) {
-            alert("Account changed");
-        }
-    }, 100);
-}
-
 async function getBalance() {
-    console.log("Getting balance...");
+    console.log("Getting wallet balance...");
     var result;
     await axios.get(
         "https://api.bscscan.com/api"
@@ -27,16 +19,24 @@ async function getBalance() {
     return result;
 }
 
+var balReqId = setInterval(function() {
+    getBalance()
+    .then((result) => {
+        totalMetrics.item(0).innerHTML = `${result}` + " of 50.000";
+    })    
+}, 35000);
+
+
 window.addEventListener("load", function() {
     getBalance()
-    .then((result) => {totalMetrics.item(0).innerHTML = `${result}`;})
-    totalMetrics.item(1).innerHTML = "0";
-    totalMetrics.item(2).innerHTML = "2500";
+    .then((result) => {
+        totalMetrics.item(0).innerHTML = `${result}` + " of 50.000";
+    })
+    totalMetrics.item(1).innerHTML = "0 of 2500";
     if (typeof web3 !== 'undefined') {
         web3 = new Web3(web3.currentProvider);
         var userAccount = web3.eth.accounts[0];
         console.log("Account detected" + userAccount)
-        startApp();
     } else {
         alert("Metamask is not installed, please install and reload the page");
     }
