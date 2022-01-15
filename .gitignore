@@ -6,3 +6,6 @@ secret.json
 
 #Ignora carpeta debug
 .vscode
+
+#Ignora los Journals de Sqlite
+.sqlite-journal

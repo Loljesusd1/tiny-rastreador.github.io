@@ -20,6 +20,7 @@ async function getBalance() {
 }
 
 /*TODO:
+- Arreglar el condicional dentro del comparador.
 - Utiliar el API de Binance (o web3) para comparar los senders dentro de los TxHash.
 - Recuerda agregar "transaction-false" y "transaction-true" al comparador.
 */
