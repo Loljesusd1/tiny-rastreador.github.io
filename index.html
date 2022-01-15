@@ -17,6 +17,7 @@
    <link rel="shortcut icon" href="IMG/favicon.ico" type="image / x-icon" >
    <link rel="icon" href="IMG/favicon.ico" type="image / x-icon" >
    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+   <script src="JS/sql.js"></script>
    <script type="module", src="JS/app.js"></script>
    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -48,12 +49,16 @@
 
     </ul>
 
+<input type="text" class="txHash-input" placeholder="TxHash">
+
+<input type="submit" class="submit-txhash">
+
 <h3>Compruebe su estado actual</h3>
 <legend class="legend-input">Introduzca su billetera de Metamask:</legend>
 
-<input type="text" id="area" class="wallet-input" placeholder="Ingrese su wallet">
+<input type="text" class="wallet-input" placeholder="Ingrese su wallet">
 
-<input type="submit" class="submit-input">
+<input type="submit" class="submit-wallet">
 
 <p id="transaction-false" class="transaction-false">
 <b class="transaction-false-title">No registrado.</b>

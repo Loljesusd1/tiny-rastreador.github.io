@@ -19,6 +19,44 @@ async function getBalance() {
     return result;
 }
 
+/*TODO:
+- Utiliar el API de Binance (o web3) para comparar los senders dentro de los TxHash.
+- Recuerda agregar "transaction-false" y "transaction-true" al comparador.
+*/
+function getTransactions() {
+	const wallet = document.querySelector(".wallet-input").value;
+	console.log("Submmited wallet: " + wallet);
+    const connection = new XMLHttpRequest();
+	connection.open("GET", "./transactions.sqlite", true);
+	connection.responseType = "arraybuffer";
+	connection.addEventListener("load", () => {
+		const uint8 = new Uint8Array(connection.response);
+		initSqlJs()
+		.then((sql) => {
+			const database = new sql.Database(uint8);
+			const transactions = database.exec("SELECT * FROM test")[0].values;
+			for (let i = transactions.length - 1; i >= 0; i--) {
+				if (wallet == transactions[i][1]) {
+					console.log("Success");
+					break;
+				} else {
+					console.log("Not matches");
+				}
+			}
+			console.log(transactions);
+			database.close();
+		})
+	})
+	connection.send();
+}
+
+/*TODO:
+- Crear la función que añade gente a la database.
+*/
+function testme() {
+	console.log("Not done");
+}
+
 var balReqId = setInterval(function() {
     getBalance()
     .then((result) => {
@@ -32,12 +70,8 @@ window.addEventListener("load", function() {
     .then((result) => {
         totalMetrics.item(0).innerHTML = `${result}` + " of 50.000";
     })
-    totalMetrics.item(1).innerHTML = "0 of 2500";
-    if (typeof web3 !== 'undefined') {
-        web3 = new Web3(web3.currentProvider);
-        var userAccount = web3.eth.accounts[0];
-        console.log("Account detected" + userAccount)
-    } else {
-        alert("Metamask is not installed, please install and reload the page");
-    }
+    totalMetrics.item(1).innerHTML = "2500 of 2500";
 });
+
+document.querySelector(".submit-wallet").addEventListener("click", () => {getTransactions()});
+document.querySelector(".submit-txhash").addEventListener("click", () => {testme()});
