@@ -19,6 +19,15 @@ async function getBalance() {
     return result;
 }
 
+/*TODO
+- Crear esta función para actualizar los slots disponibles a cargar la página
+- Ver de utilizar un archivo ".log" en lugar de analizar la base de datos
+*/
+function updateAvailableSlots() {
+	const connection = new XMLHttpRequest();
+	connection.open("GET", "./ARCHIVO.LOG", true);
+}
+
 /*TODO:
 - Arreglar el condicional dentro del comparador.
 - Utiliar el API de Binance (o web3) para comparar los senders dentro de los TxHash.
@@ -32,6 +41,7 @@ function getTransactions() {
 	connection.responseType = "arraybuffer";
 	connection.addEventListener("load", () => {
 		const uint8 = new Uint8Array(connection.response);
+		console.log(uint8);
 		initSqlJs()
 		.then((sql) => {
 			const database = new sql.Database(uint8);
@@ -52,26 +62,46 @@ function getTransactions() {
 }
 
 /*TODO:
-- Crear la función que añade gente a la database.
+- Utiliar el método PUT de http para aplicar los cambios a la database
+- Eliminar los console.logs sobrantes
 */
 function testme() {
-	console.log("Not done");
+	const txhash = document.querySelector(".txHash-input").value;
+	console.log("Entered hash: " + txhash);
+	const connection = new XMLHttpRequest();
+	connection.open("GET", "./transactions.sqlite", true);
+	connection.responseType = "arraybuffer";
+	connection.addEventListener("load", () => {
+		const uint8 = new Uint8Array(connection.response);
+		initSqlJs()
+		.then((sql) => {
+			const database = new sql.Database(uint8);
+			database.run("INSERT INTO test VALUES (NULL, ?)", [txhash]);
+			console.log(database.exec("SELECT * FROM test")[0].values);
+			console.log(database.export());
+			database.close();
+		})
+	})
+	connection.send();
 }
 
-var balReqId = setInterval(function() {
-    getBalance()
-    .then((result) => {
-        totalMetrics.item(0).innerHTML = `${result}` + " of 50.000";
-    })    
-}, 35000);
-
+function startVerifier() {
+	var balReqId = setInterval(function() {
+		getBalance()
+		.then((result) => {
+			totalMetrics.item(0).innerHTML = `${result}` + " of 50.000";
+		})    
+	}, 35000);
+}
 
 window.addEventListener("load", function() {
     getBalance()
     .then((result) => {
         totalMetrics.item(0).innerHTML = `${result}` + " of 50.000";
     })
-    totalMetrics.item(1).innerHTML = "2500 of 2500";
+    //Actualiza los slots vacíos:
+	totalMetrics.item(1).innerHTML = "2500 of 2500";
+	startVerifier();
 });
 
 document.querySelector(".submit-wallet").addEventListener("click", () => {getTransactions()});
