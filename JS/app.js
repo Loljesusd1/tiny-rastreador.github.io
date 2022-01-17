@@ -29,39 +29,6 @@ function updateAvailableSlots() {
 }
 
 /*TODO:
-- Arreglar el condicional dentro del comparador.
-- Utiliar el API de Binance (o web3) para comparar los senders dentro de los TxHash.
-- Recuerda agregar "transaction-false" y "transaction-true" al comparador.
-*/
-function getTransactions() {
-	const wallet = document.querySelector(".wallet-input").value;
-	console.log("Submmited wallet: " + wallet);
-    const connection = new XMLHttpRequest();
-	connection.open("GET", "./transactions.sqlite", true);
-	connection.responseType = "arraybuffer";
-	connection.addEventListener("load", () => {
-		const uint8 = new Uint8Array(connection.response);
-		console.log(uint8);
-		initSqlJs()
-		.then((sql) => {
-			const database = new sql.Database(uint8);
-			const transactions = database.exec("SELECT * FROM test")[0].values;
-			for (let i = transactions.length - 1; i >= 0; i--) {
-				if (wallet == transactions[i][1]) {
-					console.log("Success");
-					break;
-				} else {
-					console.log("Not matches");
-				}
-			}
-			console.log(transactions);
-			database.close();
-		})
-	})
-	connection.send();
-}
-
-/*TODO:
 - Utiliar el método PUT de http para aplicar los cambios a la database
 - Eliminar los console.logs sobrantes
 */
@@ -85,21 +52,50 @@ function testme() {
 	connection.send();
 }
 
-function test2() {
+/*TODO:
+- Implementar web3
+- Cambiar los alerts por elementos <p>
+- Implementar error handling
+*/
+function checkWallet() {
 	console.log("test 2 started");
-	axios.get("http://localhost:5000")
-	.then((data) => {
-		console.log(data);
+	const wallet = document.querySelector(".wallet-input").value;
+	var isWhitelisted = false;
+	const obtainer = new XMLHttpRequest();
+	obtainer.open("GET", "http://localhost:5000", true);
+	obtainer.addEventListener("load", (data) => {
+		console.log(obtainer.response);
+		const transactions = JSON.parse(obtainer.response).result;
+		for (let i = transactions.length - 1; i >= 0; i--) {
+			console.log(transactions[i][0]);
+			if (wallet == transactions[i][0]) {
+				isWhitelisted = true;
+			}
+		}
+		if (isWhitelisted == true) {
+			alert("You donated :D");
+		} else {
+			alert("You haven't donated :(");
+		}
 	})
+	obtainer.send()
+	
 }
 
+/*TODO:
+- Hacer string formatting en el alert
+- Implementar txHash-input
+- Implementar comprobador
+- Implementar error handling
+*/
 function test3() {
 	console.log("test 3 started");
 	const inserter = new XMLHttpRequest();
 	inserter.open("POST", "http://localhost:5000", true);
 	inserter.setRequestHeader("Content-type", "text/plain");
 	inserter.addEventListener("load", (data) => {
-		console.log(data);
+		console.log(inserter.response);
+		alert("TxHash ${txhash} successfully added to the database");
 	})
 	inserter.send("0xt35T1Ng");
 }
@@ -123,5 +119,5 @@ window.addEventListener("load", function() {
 	startVerifier();
 });
 
-document.querySelector(".submit-wallet").addEventListener("click", () => {getTransactions()});
-document.querySelector(".submit-txhash").addEventListener("click", () => {test2()});
+document.querySelector(".submit-wallet").addEventListener("click", () => {checkWallet()});
+document.querySelector(".submit-txhash").addEventListener("click", () => {test3()});
