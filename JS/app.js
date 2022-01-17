@@ -85,6 +85,25 @@ function testme() {
 	connection.send();
 }
 
+function test2() {
+	console.log("test 2 started");
+	axios.get("http://localhost:5000")
+	.then((data) => {
+		console.log(data);
+	})
+}
+
+function test3() {
+	console.log("test 3 started");
+	const inserter = new XMLHttpRequest();
+	inserter.open("POST", "http://localhost:5000", true);
+	inserter.setRequestHeader("Content-type", "text/plain");
+	inserter.addEventListener("load", (data) => {
+		console.log(data);
+	})
+	inserter.send("0xt35T1Ng");
+}
+
 function startVerifier() {
 	var balReqId = setInterval(function() {
 		getBalance()
@@ -105,4 +124,4 @@ window.addEventListener("load", function() {
 });
 
 document.querySelector(".submit-wallet").addEventListener("click", () => {getTransactions()});
-document.querySelector(".submit-txhash").addEventListener("click", () => {testme()});
+document.querySelector(".submit-txhash").addEventListener("click", () => {test2()});
