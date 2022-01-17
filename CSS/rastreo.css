@@ -104,6 +104,20 @@ font-size: 22px;
 
 }
 
+.txHash-input{
+    margin: 0.5rem;
+    border-radius: 20px;
+    padding: 8px;
+    justify-content: center;
+    border: 2px black solid;
+    width: 100%;
+    background-color: white;
+    height: 50px;
+}
+.txHash-input:hover{
+	border:2px #a01208 solid;
+}
+
 .wallet-input{
     margin: 0.5rem;
     border-radius: 20px;
@@ -118,7 +132,7 @@ font-size: 22px;
 	border:2px #a01208 solid;
 }
 
-.submit-input{
+.submit-txhash{
 width: 20%;
 height: 30px;
 margin-bottom: 50px;
@@ -128,7 +142,21 @@ background-color: white;
 margin-left: 0.5rem;
 border-radius: 10px;
 }
-.submit-input:hover{
+.submit-txhash:hover{
+border:2px #34d14e solid;	
+}
+
+.submit-wallet{
+width: 20%;
+height: 30px;
+margin-bottom: 50px;
+font-size: 120%;
+border: 2px black solid;
+background-color: white;
+margin-left: 0.5rem;
+border-radius: 10px;
+}
+.submit-wallet:hover{
 border:2px #34d14e solid;	
 }
 

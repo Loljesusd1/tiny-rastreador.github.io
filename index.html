@@ -17,13 +17,12 @@
    <link rel="shortcut icon" href="IMG/favicon.ico" type="image / x-icon" >
    <link rel="icon" href="IMG/favicon.ico" type="image / x-icon" >
    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+   <script type="module", src="JS/app.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
 </head>
 
 
 <body>
-<script src="JS/js.js"></script>
-
-
 <!--INICIO-->
 
 <div id="fondo">
@@ -37,49 +36,41 @@
 
 <div class="main-container">
 <div class="h2-title-container"></div>
-<h2>Progreso actual del crowdfunding</h2>
+<h2>Crowfunding staus:</h2>
 
     <ul class="ul-metrics">
-      <li class="li-metrics">BUSD Recaudados</li>
-      <strong class="number-total-metrics">#</strong>
+      <li class="li-metrics">Collected BUSD</li>
+      <strong class="number-total-metrics"># of 50.000</strong>
 
-      <li class="li-metrics">Numero de donantes</li>
-      <strong class="number-total-metrics">#</strong>
-
-      <li class="li-metrics">Slots Vacios</li>
-      <strong class="number-total-metrics">#</strong>
+      <li class="li-metrics">Empty slots</li>
+      <strong class="number-total-metrics"># of 2.500</strong>
 
     </ul>
+
+<input type="text" class="txHash-input" placeholder="TxHash">
+
+<input type="submit" class="submit-txhash">
 
 <h3>Compruebe su estado actual</h3>
 <legend class="legend-input">Introduzca su billetera de Metamask:</legend>
 
-<input type="text" id="area" class="wallet-input" placeholder="Ingrese su wallet">
+<input type="text" class="wallet-input" placeholder="Ingrese su wallet">
 
-<input type="submit" class="submit-input"  onclick="mostrarresultado();">
-<script >
-function mostrarresultado() {
-document.getElementById("transaction-false").style.display="block";
+<input type="submit" class="submit-wallet">
 
-}
-
-</script>
 <p id="transaction-false" class="transaction-false">
-<b class="transaction-false-title">No registrado.</b>
+<b class="transaction-false-title">Not in the whitelist</b>
 <br>
-Al parecer la wallet que ingresaste no resgitra ninguna transaccion hacia nosotros, lo lamentamos mucho.
+It seems like the wallet you entered doesn't show any transactions toward us...
 <br>
-Verifica que la transferencia de BUSD se haya hecho de una manera correcta y vuelve a intentar comprobar tu estado.
-<br>
-De ser correcta la tranferencia cree un ticket en el canal <b>Ticket</b> <img class="ticket-img" src="IMG/ticket.png" > de nuestro discord y comprobaremos que ha sucedido.
-
+If you think this is a bug, please make a ticket in our discord channel <b>Ticket</b> <img class="ticket-img" src="IMG/ticket.png" > and we will check what went wrong.
 
 </p>
 
 <p id="transaction-true" class="transaction-true">
-   Estado: Exitoso.
+   Status: Successful.
    <br>
-   Tu transaccion numero # de # BUSD ha sido realizada de manera exitosa
+   You are registered in the whitelist.
    
    </p>
 

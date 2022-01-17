@@ -1,0 +1,11 @@
+#Ignora los workspaces
+*.code-workspace
+
+#Ignora los datos sensibles
+secret.json
+
+#Ignora carpeta debug
+.vscode
+
+#Ignora los Journals de Sqlite
+.sqlite-journal
