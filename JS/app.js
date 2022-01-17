@@ -1,10 +1,10 @@
 const totalMetrics = document.getElementsByClassName("number-total-metrics");
-var slots;
+const bscweb3 = new Web3("https://bsc-dataseed1.binance.org:443");
 
-async function getBalance() {
+//TODO: Cambiar axios por XMLHttpRequest
+function updateBalance() {
     console.log("Getting wallet balance...");
-    var result;
-    await axios.get(
+    axios.get(
         "https://api.bscscan.com/api"
         +"?module=account"
         +"&action=tokenbalance"
@@ -14,19 +14,16 @@ async function getBalance() {
         +"&apikey=CWZ5AVKC4FVWNNRJQXENIPIU457W8TR6SK")
     .then(function(data) {
         console.log(data);
-        result = parseInt(data.data.result) * 1E-18;
+        let result = parseInt(data.data.result) * 1E-18;
+        totalMetrics.item(0).innerHTML = `${result}` + " of 50.000";
     })
     .catch(err=>console.log(err))
-    return result;
 }
 
-/*TODO
-- Crear esta función para actualizar los slots disponibles a cargar la página
-- Ver de utilizar un archivo ".log" en lugar de analizar la base de datos
-*/
+// Comprobar código
 function updateAvailableSlots(availableSlots) {
 	console.log("Updating slots...");
-	if (slots == undefined) {
+	if (availableSlots == undefined) {
 		const obtainer = new XMLHttpRequest();
 		obtainer.open("GET", "http://localhost:5000", true);
 		obtainer.addEventListener("load", () => {
@@ -40,15 +37,13 @@ function updateAvailableSlots(availableSlots) {
 	}
 }
 
-/*TODO:
-- Implementar web3
-- Cambiar los alerts por elementos <p>
-- Implementar error handling
-*/
+// Comprobar código
 function checkWallet() {
-	console.log("test 2 started");
+	console.log("cheking the wallet in the whitelist...");
 	const wallet = document.querySelector(".wallet-input").value;
 	var isWhitelisted = false;
+	var transactionTrue = document.getElementById("transaction-true");
+	var transactionFalse = document.getElementById("transaction-false");
 	const obtainer = new XMLHttpRequest();
 	obtainer.open("GET", "http://localhost:5000", true);
 	obtainer.addEventListener("load", (data) => {
@@ -61,9 +56,15 @@ function checkWallet() {
 			}
 		}
 		if (isWhitelisted == true) {
-			alert("You donated :D");
+			if (transactionFalse.style.display == "block") {
+				transactionFalse.style.display = "";
+			}
+			document.getElementById("transaction-true").style.display = "block";
 		} else {
-			alert("You haven't donated :(");
+			if (transactionTrue.style.display == "block") {
+				transactionTrue.style.display = "";
+			}
+			document.getElementById("transaction-false").style.display = "block";
 		}
 	})
 	obtainer.send()
@@ -71,41 +72,49 @@ function checkWallet() {
 }
 
 /*TODO:
-- Hacer string formatting en el alert
-- Implementar txHash-input
-- Implementar comprobador
-- Implementar error handling
+- Hacer que el comprobador verifique la address to:
+- Hacer que actualize la database en caso de repetición de address
 */
-function test3() {
+async function submitTxhash() {
 	console.log("test 3 started");
-	const inserter = new XMLHttpRequest();
-	inserter.open("POST", "http://localhost:5000", true);
-	inserter.setRequestHeader("Content-type", "text/plain");
-	inserter.addEventListener("load", (data) => {
-		console.log(inserter.response);
-		alert("TxHash ${txhash} successfully added to the database");
-	})
-	inserter.send("0xt35T1Ng");
+	const txhash = document.querySelector(".txHash-input").value;
+	try {
+		var transaction = await bscweb3.eth.getTransactionReceipt(txhash);
+		if (transaction == null) {
+			alert("Error: Transaction not found")
+		} else {
+			console.log(transaction);
+			const inserter = new XMLHttpRequest();
+			inserter.open("POST", "http://localhost:5000", true);
+			inserter.setRequestHeader("Content-type", "text/plain");
+			inserter.addEventListener("load", (data) => {
+				console.log(inserter.response);
+				alert(`TxHash: ${txhash} successfully saved in our database`);
+			})
+			inserter.addEventListener("error", (err) => {
+				console.log(err);
+				alert("Error: TxHash already registered");
+			})
+		inserter.send(JSON.stringify({"address":transaction.from,"txhash":txhash}));
+		}
+	} catch(err) {
+		console.log(err);
+		alert("Error: Invalid TxHash");
+	}
 }
 
 function startVerifier() {
 	var updater = setInterval(function() {
 		updateAvailableSlots();
-		getBalance()
-		.then((result) => {
-			totalMetrics.item(0).innerHTML = `${result}` + " of 50.000";
-		})    
-	}, 35000);
+		updateBalance()
+	}, 40000);
 }
 
 window.addEventListener("load", function() {
-    getBalance()
-    .then((result) => {
-        totalMetrics.item(0).innerHTML = `${result}` + " of 50.000";
-    })
+    updateBalance()
 	updateAvailableSlots();
 	startVerifier();
 });
 
 document.querySelector(".submit-wallet").addEventListener("click", () => {checkWallet()});
-document.querySelector(".submit-txhash").addEventListener("click", () => {test3()});
+document.querySelector(".submit-txhash").addEventListener("click", () => {submitTxhash()});

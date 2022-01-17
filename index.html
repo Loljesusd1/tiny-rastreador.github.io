@@ -17,7 +17,6 @@
    <link rel="shortcut icon" href="IMG/favicon.ico" type="image / x-icon" >
    <link rel="icon" href="IMG/favicon.ico" type="image / x-icon" >
    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-   <script src="JS/sql.js"></script>
    <script type="module", src="JS/app.js"></script>
    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -61,21 +60,18 @@
 <input type="submit" class="submit-wallet">
 
 <p id="transaction-false" class="transaction-false">
-<b class="transaction-false-title">No registrado.</b>
+<b class="transaction-false-title">Not in the whitelist</b>
 <br>
-Al parecer la wallet que ingresaste no resgitra ninguna transaccion hacia nosotros, lo lamentamos mucho.
+It seems like the wallet you entered doesn't show any transactions toward us...
 <br>
-Verifica que la transferencia de BUSD se haya hecho de una manera correcta y vuelve a intentar comprobar tu estado.
-<br>
-De ser correcta la tranferencia cree un ticket en el canal <b>Ticket</b> <img class="ticket-img" src="IMG/ticket.png" > de nuestro discord y comprobaremos que ha sucedido.
-
+If you think this is a bug, please make a ticket in our discord channel <b>Ticket</b> <img class="ticket-img" src="IMG/ticket.png" > and we will check what went wrong.
 
 </p>
 
 <p id="transaction-true" class="transaction-true">
-   Estado: Exitoso.
+   Status: Successful.
    <br>
-   Tu transaccion numero # de # BUSD ha sido realizada de manera exitosa
+   You are registered in the whitelist.
    
    </p>
 
