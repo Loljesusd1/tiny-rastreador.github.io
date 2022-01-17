@@ -1,23 +1,25 @@
 const totalMetrics = document.getElementsByClassName("number-total-metrics");
 const bscweb3 = new Web3("https://bsc-dataseed1.binance.org:443");
 
-//TODO: Cambiar axios por XMLHttpRequest
+// Comprobar código
 function updateBalance() {
     console.log("Getting wallet balance...");
-    axios.get(
-        "https://api.bscscan.com/api"
-        +"?module=account"
-        +"&action=tokenbalance"
-        +"&contractaddress=0xe9e7cea3dedca5984780bafc599bd69add087d56"
-        +"&address=0x75c76A207020E2b20ba7e97225f1483C46E2430b"
-        +"&tag=lastest"
-        +"&apikey=CWZ5AVKC4FVWNNRJQXENIPIU457W8TR6SK")
-    .then(function(data) {
-        console.log(data);
-        let result = parseInt(data.data.result) * 1E-18;
-        totalMetrics.item(0).innerHTML = `${result}` + " of 50.000";
-    })
-    .catch(err=>console.log(err))
+	let bscApi = "https://api.bscscan.com/api"
+				+"?module=account"
+				+"&action=tokenbalance"
+				+"&contractaddress=0xe9e7cea3dedca5984780bafc599bd69add087d56"
+				+"&address=0x75c76A207020E2b20ba7e97225f1483C46E2430b"
+				+"&tag=lastest"
+				+"&apikey=CWZ5AVKC4FVWNNRJQXENIPIU457W8TR6SK"
+	const obtainer = new XMLHttpRequest();
+	obtainer.open("GET", bscApi, true);
+	obtainer.addEventListener("load", () => {
+		console.log(obtainer.response);
+		let result = parseInt(JSON.parse(obtainer.response).result) * 1E-18;
+		totalMetrics.item(0).innerHTML = `${result}` + " of 50.000";
+
+	})
+	obtainer.send();
 }
 
 // Comprobar código
