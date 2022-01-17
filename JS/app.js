@@ -27,7 +27,7 @@ function updateAvailableSlots(availableSlots) {
 	console.log("Updating slots...");
 	if (availableSlots == undefined) {
 		const obtainer = new XMLHttpRequest();
-		obtainer.open("GET", "http://localhost:5000", true);
+		obtainer.open("GET", "https://tinyapi-online.herokuapp.com/", true);
 		obtainer.addEventListener("load", () => {
 			let occupiedSlots = JSON.parse(obtainer.response).result.length;
 			availableSlots = 2500 - occupiedSlots;
@@ -47,7 +47,7 @@ function checkWallet() {
 	var transactionTrue = document.getElementById("transaction-true");
 	var transactionFalse = document.getElementById("transaction-false");
 	const obtainer = new XMLHttpRequest();
-	obtainer.open("GET", "http://localhost:5000", true);
+	obtainer.open("GET", "https://tinyapi-online.herokuapp.com/", true);
 	obtainer.addEventListener("load", (data) => {
 		console.log(obtainer.response);
 		const transactions = JSON.parse(obtainer.response).result;
@@ -78,7 +78,7 @@ function checkWallet() {
 - Hacer que actualize la database en caso de repetición de address
 */
 async function submitTxhash() {
-	console.log("test 3 started");
+	console.log("Uploading txhash to the database...");
 	const txhash = document.querySelector(".txHash-input").value;
 	try {
 		var transaction = await bscweb3.eth.getTransactionReceipt(txhash);
@@ -87,7 +87,7 @@ async function submitTxhash() {
 		} else {
 			console.log(transaction);
 			const inserter = new XMLHttpRequest();
-			inserter.open("POST", "http://localhost:5000", true);
+			inserter.open("POST", "https://tinyapi-online.herokuapp.com/", true);
 			inserter.setRequestHeader("Content-type", "text/plain");
 			inserter.addEventListener("load", (data) => {
 				console.log(inserter.response);
