@@ -1,4 +1,5 @@
 const totalMetrics = document.getElementsByClassName("number-total-metrics");
+var slots;
 
 async function getBalance() {
     console.log("Getting wallet balance...");
@@ -23,33 +24,20 @@ async function getBalance() {
 - Crear esta función para actualizar los slots disponibles a cargar la página
 - Ver de utilizar un archivo ".log" en lugar de analizar la base de datos
 */
-function updateAvailableSlots() {
-	const connection = new XMLHttpRequest();
-	connection.open("GET", "./ARCHIVO.LOG", true);
-}
-
-/*TODO:
-- Utiliar el método PUT de http para aplicar los cambios a la database
-- Eliminar los console.logs sobrantes
-*/
-function testme() {
-	const txhash = document.querySelector(".txHash-input").value;
-	console.log("Entered hash: " + txhash);
-	const connection = new XMLHttpRequest();
-	connection.open("GET", "./transactions.sqlite", true);
-	connection.responseType = "arraybuffer";
-	connection.addEventListener("load", () => {
-		const uint8 = new Uint8Array(connection.response);
-		initSqlJs()
-		.then((sql) => {
-			const database = new sql.Database(uint8);
-			database.run("INSERT INTO test VALUES (NULL, ?)", [txhash]);
-			console.log(database.exec("SELECT * FROM test")[0].values);
-			console.log(database.export());
-			database.close();
+function updateAvailableSlots(availableSlots) {
+	console.log("Updating slots...");
+	if (slots == undefined) {
+		const obtainer = new XMLHttpRequest();
+		obtainer.open("GET", "http://localhost:5000", true);
+		obtainer.addEventListener("load", () => {
+			let occupiedSlots = JSON.parse(obtainer.response).result.length;
+			availableSlots = 2500 - occupiedSlots;
+			totalMetrics.item(1).innerHTML = `${availableSlots} of 2500`;
 		})
-	})
-	connection.send();
+		obtainer.send();
+	} else {
+		totalMetrics.item(1).innerHTML = `${availableSlots} of 2500`;
+	}
 }
 
 /*TODO:
@@ -101,7 +89,8 @@ function test3() {
 }
 
 function startVerifier() {
-	var balReqId = setInterval(function() {
+	var updater = setInterval(function() {
+		updateAvailableSlots();
 		getBalance()
 		.then((result) => {
 			totalMetrics.item(0).innerHTML = `${result}` + " of 50.000";
@@ -114,8 +103,7 @@ window.addEventListener("load", function() {
     .then((result) => {
         totalMetrics.item(0).innerHTML = `${result}` + " of 50.000";
     })
-    //Actualiza los slots vacíos:
-	totalMetrics.item(1).innerHTML = "2500 of 2500";
+	updateAvailableSlots();
 	startVerifier();
 });
 
