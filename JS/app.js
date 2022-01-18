@@ -74,7 +74,6 @@ function checkWallet() {
 - Hacer que el comprobador verifique la address to:
 - Hacer que actualize la database en caso de repetición de address
 - Hacer que pueda borrar entradas de la base de datos.
-- Hacer que actualice el balance y los slots en caso de éxito
 */
 async function submitTxhash() {
 	console.log("Uploading txhash to the database...");
@@ -90,6 +89,8 @@ async function submitTxhash() {
 			inserter.setRequestHeader("Content-type", "text/plain");
 			inserter.addEventListener("load", (data) => {
 				console.log(inserter.response);
+				updateAvailableSlots();
+				updateBalance();
 				alert(`TxHash: ${txhash} successfully saved in our database`);
 			})
 			inserter.addEventListener("error", (err) => {
@@ -107,7 +108,7 @@ async function submitTxhash() {
 function startVerifier() {
 	var updater = setInterval(function() {
 		updateAvailableSlots();
-		updateBalance()
+		updateBalance();
 	}, 40000);
 }
 
