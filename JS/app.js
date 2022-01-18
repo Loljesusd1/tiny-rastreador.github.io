@@ -14,7 +14,6 @@ function updateBalance() {
 	const obtainer = new XMLHttpRequest();
 	obtainer.open("GET", bscApi, true);
 	obtainer.addEventListener("load", () => {
-		console.log(obtainer.response);
 		let result = parseInt(JSON.parse(obtainer.response).result) * 1E-18;
 		totalMetrics.item(0).innerHTML = `${result}` + " of 50.000";
 
@@ -29,8 +28,7 @@ function updateAvailableSlots(availableSlots) {
 		const obtainer = new XMLHttpRequest();
 		obtainer.open("GET", "https://tinyapi-online.herokuapp.com/", true);
 		obtainer.addEventListener("load", () => {
-			let occupiedSlots = JSON.parse(obtainer.response).result.length;
-			availableSlots = 2500 - occupiedSlots;
+			availableSlots = 2500 - JSON.parse(obtainer.response).result.length;
 			totalMetrics.item(1).innerHTML = `${availableSlots} of 2500`;
 		})
 		obtainer.send();
@@ -49,10 +47,9 @@ function checkWallet() {
 	const obtainer = new XMLHttpRequest();
 	obtainer.open("GET", "https://tinyapi-online.herokuapp.com/", true);
 	obtainer.addEventListener("load", (data) => {
-		console.log(obtainer.response);
 		const transactions = JSON.parse(obtainer.response).result;
+		console.log(transactions);
 		for (let i = transactions.length - 1; i >= 0; i--) {
-			console.log(transactions[i][0]);
 			if (wallet == transactions[i][0]) {
 				isWhitelisted = true;
 			}
@@ -76,6 +73,8 @@ function checkWallet() {
 /*TODO:
 - Hacer que el comprobador verifique la address to:
 - Hacer que actualize la database en caso de repetición de address
+- Hacer que pueda borrar entradas de la base de datos.
+- Hacer que actualice el balance y los slots en caso de éxito
 */
 async function submitTxhash() {
 	console.log("Uploading txhash to the database...");
