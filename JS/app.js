@@ -77,11 +77,11 @@ function checkWallet() {
 				message["false"].style.display = "";
 			}
 			var tier;
-			if (donation >= 500) {
+			if (donation >= 220) {
 				tier = "3";
-			} else if (donation >= 200) {
+			} else if (donation >= 110) {
 				tier = "2";
-			} else if (donation >= 100) {
+			} else if (donation >= 40) {
 				tier = "1";
 			} else {
 				tier = "0";
