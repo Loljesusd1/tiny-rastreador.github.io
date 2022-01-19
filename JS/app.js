@@ -1,5 +1,8 @@
 const totalMetrics = document.getElementsByClassName("number-total-metrics");
 const bscweb3 = new Web3("https://bsc-dataseed1.binance.org:443");
+const tinyapi = "https://tinyapi-online.herokuapp.com/"; //Production API
+//const tinyapi = "http://localhost:5000"; //Testing API
+const busdWei = 1;
 
 // Comprobar código
 function updateBalance() {
@@ -26,7 +29,7 @@ function updateAvailableSlots(availableSlots) {
 	console.log("Updating slots...");
 	if (availableSlots == undefined) {
 		const obtainer = new XMLHttpRequest();
-		obtainer.open("GET", "https://tinyapi-online.herokuapp.com/", true);
+		obtainer.open("GET", tinyapi, true);
 		obtainer.addEventListener("load", () => {
 			availableSlots = 2500 - JSON.parse(obtainer.response).result.length;
 			totalMetrics.item(1).innerHTML = `${availableSlots} of 2500`;
@@ -45,8 +48,8 @@ function checkWallet() {
 	var transactionTrue = document.getElementById("transaction-true");
 	var transactionFalse = document.getElementById("transaction-false");
 	const obtainer = new XMLHttpRequest();
-	obtainer.open("GET", "https://tinyapi-online.herokuapp.com/", true);
-	obtainer.addEventListener("load", (data) => {
+	obtainer.open("GET", tinyapi, true);
+	obtainer.addEventListener("load", () => {
 		const transactions = JSON.parse(obtainer.response).result;
 		console.log(transactions);
 		for (let i = transactions.length - 1; i >= 0; i--) {
@@ -72,32 +75,41 @@ function checkWallet() {
 
 /*TODO:
 - Hacer que el comprobador verifique la address to:
-- Hacer que actualize la database en caso de repetición de address
-- Hacer que pueda borrar entradas de la base de datos.
 */
 async function submitTxhash() {
 	console.log("Uploading txhash to the database...");
 	const txhash = document.querySelector(".txHash-input").value;
 	try {
 		var transaction = await bscweb3.eth.getTransactionReceipt(txhash);
+		console.log(transaction);
 		if (transaction == null) {
-			alert("Error: Transaction not found")
+			alert("Error: Transaction not found");
+		} else if (transaction.status == false) {
+			alert("Error: Submmited transaction has a failed status");
 		} else {
-			console.log(transaction);
+			transaction = await bscweb3.eth.getTransaction(txhash);
+			console.log(transaction.value);
+			const donatedBusd = 100;//transaction.value / 1E18;
 			const inserter = new XMLHttpRequest();
-			inserter.open("POST", "https://tinyapi-online.herokuapp.com/", true);
+			inserter.open("POST", tinyapi, true);
 			inserter.setRequestHeader("Content-type", "text/plain");
-			inserter.addEventListener("load", (data) => {
-				console.log(inserter.response);
-				updateAvailableSlots();
-				updateBalance();
-				alert(`TxHash: ${txhash} successfully saved in our database`);
+			inserter.addEventListener("load", () => {
+				let response = JSON.parse(inserter.response);
+				console.log(response);
+				if (response.result == "inserted") {
+					updateAvailableSlots();
+					updateBalance();
+					alert(`Transaction: ${txhash} \nhas been successfully added to our database`);
+				} else {
+					updateBalance();
+					alert(`New transaction from: ${transaction.from} \nhas been successfully added to our database`);
+				}
 			})
 			inserter.addEventListener("error", (err) => {
 				console.log(err);
 				alert("Error: TxHash already registered");
 			})
-		inserter.send(JSON.stringify({"address":transaction.from,"txhash":txhash}));
+		inserter.send(JSON.stringify({"address":transaction.from,"txhash":txhash,"busd":donatedBusd}));
 		}
 	} catch(err) {
 		console.log(err);
@@ -113,6 +125,7 @@ function startVerifier() {
 }
 
 window.addEventListener("load", function() {
+	console.log("Running API: " + tinyapi)
     updateBalance()
 	updateAvailableSlots();
 	startVerifier();
